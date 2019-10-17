@@ -1,5 +1,5 @@
 #!/bin/bash
-# 更新Centos7默认内核版本3.10.0为最新的LTS
+# 更新Centos7默认内核版本3.10.0为最新的LTS。使用root用户执行
 
 ## 查看版本
 uname -r
