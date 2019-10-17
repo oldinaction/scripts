@@ -26,6 +26,11 @@ yum -y --enablerepo=elrepo-kernel install kernel-lt.x86_64 kernel-lt-devel.x86_6
 sed -i 's#GRUB_DEFAULT=saved#GRUB_DEFAULT=0#g' /etc/default/grub
 # 重新创建内核配置
 grub2-mkconfig -o /boot/grub2/grub.cfg
+
+# 可选。删除旧的内核
+# rpm -qa | grep kernel
+# yum remove 3.10.0-957.el7.x86_64
+
 # 重启
 read -p "you are sure you wang to reboot?[y/n]" input
 echo "you input [$input]"
