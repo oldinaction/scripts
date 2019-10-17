@@ -3,7 +3,7 @@
 
 ## 查看版本
 uname -r
-# 3.10.0-514.el7.x86_64
+# 3.10.0-1062.1.2.el7.x86_64
 cat /etc/redhat-release
 # CentOS Linux release 7.3.1611 (Core)
 cat /proc/version
@@ -29,7 +29,7 @@ grub2-mkconfig -o /boot/grub2/grub.cfg
 
 # 可选。删除旧的内核
 # rpm -qa | grep kernel
-# yum remove 3.10.0-957.el7.x86_64
+# yum remove 3.10.0-1062.1.2.el7.x86_64
 
 # 重启
 read -p "you are sure you wang to reboot?[y/n]" input
