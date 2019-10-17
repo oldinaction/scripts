@@ -1,0 +1,12 @@
+apiVersion: settings.k8s.io/v1alpha1
+kind: PodPreset
+metadata:
+  # 被注入的pod会增加一个Annotation如：podpreset.admission.kubernetes.io/podpreset-allow-tz-env: 4735967
+  name: allow-tz-env
+spec:
+  selector:
+    # 空表示匹配改namespace下所有pod
+    matchLabels:
+  env:
+  - name: TZ
+    value: Asia/Shanghai
