@@ -1,9 +1,9 @@
 #!/bin/bash
-# 更新Centos7默认内核版本3.10.0为最新的LTS
+# 更新Centos7默认内核版本3.10.0为最新的LTS。使用root用户执行
 
 ## 查看版本
 uname -r
-# 3.10.0-514.el7.x86_64
+# 3.10.0-1062.1.2.el7.x86_64
 cat /etc/redhat-release
 # CentOS Linux release 7.3.1611 (Core)
 cat /proc/version
@@ -21,11 +21,16 @@ yum -y --enablerepo=elrepo-kernel install kernel-lt.x86_64 kernel-lt-devel.x86_6
 
 ## 修改grub中默认的内核版本(Linux Kernel)
 # 查看所有内核版本，第一行则内核索引为0，以此类推
-awk -F\' '$1=="menuentry " {print $2}' /etc/grub2.cfg
+# awk -F\' '$1=="menuentry " {print $2}' /etc/grub2.cfg
 # 修改默认启动内核版本。将 `GRUB_DEFAULT=saved` 改成 `GRUB_DEFAULT=0`(此处0表示新安装的内核索引)
 sed -i 's#GRUB_DEFAULT=saved#GRUB_DEFAULT=0#g' /etc/default/grub
 # 重新创建内核配置
 grub2-mkconfig -o /boot/grub2/grub.cfg
+
+# 可选。删除旧的内核
+# rpm -qa | grep kernel
+# yum remove 3.10.0-1062.1.2.el7.x86_64
+
 # 重启
 read -p "you are sure you wang to reboot?[y/n]" input
 echo "you input [$input]"
