@@ -10,7 +10,7 @@ systemctl restart rsyslog
 \cp /etc/profile /etc/profile.bak
 cat >> /etc/profile << 'EOF'
 
-## 设置history格式
+## 设置history格式，并记录到日志文件 /var/log/local1-info.log
 USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}'|sed -e 's/[()]//g'`
 export HISTTIMEFORMAT="%F %T ${USER_IP} `whoami` " 
 export PROMPT_COMMAND='\
