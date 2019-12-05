@@ -25,3 +25,4 @@ export OLD_PWD=$PWD;'
 
 EOF
 source /etc/profile
+echo 'conf-recode-cmd-history done...'
