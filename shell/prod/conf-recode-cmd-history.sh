@@ -7,10 +7,10 @@ local1.info /var/log/local1-info.log
 EOF
 systemctl restart rsyslog
 
-\cp /etc/profile /etc/profile.bak
-cat >> /etc/profile << 'EOF'
+\cp /etc/bashrc /etc/bashrc.bak
+cat >> /etc/bashrc << 'EOF'
 
-## 设置history格式，并记录到日志文件 /var/log/local1-info.log
+## [conf-recode-cmd-history.sh] Set history format and record to log file /var/log/local1-info.log
 USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}'|sed -e 's/[()]//g'`
 export HISTTIMEFORMAT="%F %T ${USER_IP} `whoami` " 
 export PROMPT_COMMAND='\
@@ -24,5 +24,5 @@ export LAST_CMD="$(history 1)";
 export OLD_PWD=$PWD;'
 
 EOF
-source /etc/profile
+source /etc/bashrc
 echo '=====>conf-recode-cmd-history done...'
