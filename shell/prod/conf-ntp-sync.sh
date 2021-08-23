@@ -7,6 +7,9 @@ date
 sudo yum install -y ntp ntpdate ntp-doc
 
 cat > /etc/ntp.conf << 'EOF'
+# 可以保证ntpd在时间差较大时依然工作。如果本地时间和目标服务器差别太大，ntpd不会进行时间同步，且会自动退出
+tinker panic 0
+
 # restrict default ignore # 设置默认策略为允许任何主机进行时间同步
 restrict default kod nomodify notrap nopeer noquery
 restrict -6 default kod nomodify notrap nopeer noquery  # `restrict -6` 表示针对ipv6设置
